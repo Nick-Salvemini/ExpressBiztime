@@ -7,6 +7,13 @@ const db = require("../db");
 
 // Return info on invoices: like {invoices: [{id, comp_code}, ...]}
 
+router.get('/', async (req, res, next) => {
+    try {
+
+    } catch (e) {
+        return next(e)
+    }
+})
 
 // GET /invoices/[id]
 
@@ -14,7 +21,13 @@ const db = require("../db");
 // If invoice cannot be found, returns 404.
 // Returns {invoice: {id, amt, paid, add_date, paid_date, company: {code, name, description}}}
 
+router.get('/:id', async (req, res, next) => {
+    try {
 
+    } catch (e) {
+        return next(e)
+    }
+})
 
 // POST /invoices
 
@@ -22,7 +35,13 @@ const db = require("../db");
 // Needs to be passed in JSON body of: {comp_code, amt}
 // Returns: {invoice: {id, comp_code, amt, paid, add_date, paid_date}}
 
+router.post('/', async (req, res, next) => {
+    try {
 
+    } catch (e) {
+        return next(e)
+    }
+})
 
 // PUT /invoices/[id]
 
@@ -31,7 +50,13 @@ const db = require("../db");
 // Needs to be passed in a JSON body of {amt}
 // Returns: {invoice: {id, comp_code, amt, paid, add_date, paid_date}}
 
+router.put('/:id', async (req, res, next) => {
+    try {
 
+    } catch (e) {
+        return next(e)
+    }
+})
 
 // DELETE /invoices/[id]
 
@@ -40,9 +65,23 @@ const db = require("../db");
 // Returns: {status: "deleted"}
 // Also, one route from the previous part should be updated:
 
+router.delete('/:id', async (req, res, next) => {
+    try {
 
+    } catch (e) {
+        return next(e)
+    }
+})
 
 // GET /companies/[code]
 
 // Return obj of company: {company: {code, name, description, invoices: [id, ...]}}
 // If the company given cannot be found, this should return a 404 status response.
+
+router.get('/companies/:code', async (req, res, next) => {
+    try {
+
+    } catch (e) {
+        return next(e)
+    }
+})
