@@ -9,7 +9,8 @@ const db = require("../db");
 
 router.get('/', async (req, res, next) => {
     try {
-
+        const results = await db.query('SELECT * FROM companies');
+        return res.json({ companies: results.rows })
     } catch (e) {
         return next(e)
     }
@@ -20,13 +21,13 @@ router.get('/', async (req, res, next) => {
 // Return obj of company: {company: {code, name, description}}
 // If the company given cannot be found, this should return a 404 status response.
 
-router.get('/:code', async (req, res, next) => {
-    try {
+// router.get('/:code', async (req, res, next) => {
+//     try {
 
-    } catch (e) {
-        return next(e)
-    }
-})
+//     } catch (e) {
+//         return next(e)
+//     }
+// })
 
 // POST /companies
 
@@ -34,13 +35,13 @@ router.get('/:code', async (req, res, next) => {
 // Needs to be given JSON like: {code, name, description}
 // Returns obj of new company: {company: {code, name, description}}
 
-router.post('/', async (req, res, next) => {
-    try {
+// router.post('/', async (req, res, next) => {
+//     try {
 
-    } catch (e) {
-        return next(e)
-    }
-})
+//     } catch (e) {
+//         return next(e)
+//     }
+// })
 
 // PUT /companies/[code]
 
@@ -49,13 +50,13 @@ router.post('/', async (req, res, next) => {
 // Needs to be given JSON like: {name, description}
 // Returns update company object: {company: {code, name, description}}
 
-router.put('/:code', async (req, res, next) => {
-    try {
+// router.put('/:code', async (req, res, next) => {
+//     try {
 
-    } catch (e) {
-        return next(e)
-    }
-})
+//     } catch (e) {
+//         return next(e)
+//     }
+// })
 
 // DELETE /companies/[code]
 
@@ -63,10 +64,10 @@ router.put('/:code', async (req, res, next) => {
 // Should return 404 if company cannot be found.
 // Returns {status: "deleted"}
 
-router.delete('/:code', async (req, res, next) => {
-    try {
+// router.delete('/:code', async (req, res, next) => {
+//     try {
 
-    } catch (e) {
-        return next(e)
-    }
-})
+//     } catch (e) {
+//         return next(e)
+//     }
+// })
