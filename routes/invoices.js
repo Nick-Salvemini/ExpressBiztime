@@ -95,17 +95,17 @@ router.delete('/:id', async (req, res, next) => {
 
 router.get('/companies/:code', async (req, res, next) => {
     try {
-        const { code } = req.params;
-        console.log('11111111');
-        results = await db.query('SELECT * FROM companies WHERE code = $1', [code]);
-        console.log('2222222222222222');
+        const results = await db.query(
+            'SELECT c.code, c.name, c.description, i.id, i.comp_Code, i.amt, i.paid, i.paid_date FROM companies AS c LEFT JOIN invoices AS i ON c.code = i.comp_code WHERE c.code = $1',
+            [req.params.code]);
         if (results.rows.length === 0) {
-            throw new ExpressError(`Can't find company with code of ${code}`, 404);
-        } else {
-            results2 = await db.query('SELECT * FROM invoices WHERE comp_code=$1', [code]);
-            console.log('3333333333333333');
-            return res.send({ company: { code: results.rows.code, name: results.rows.name, description: results.rows.description, invoices: results2.rows } })
+            throw new ExpressError(`Can't find company with code of ${req.params.code}`, 404);
         }
+
+        const { code, name, description } = results.rows[0];
+        const invoices = results.rows.map(r => ({ id: r.id, comp_Code: r.comp_Code, amt: r.amt, paid: r.paid, paid_date: r.paid_date }));
+        return res.send({ code, name, description, invoices });
+
     } catch (e) {
         return next(e)
     }

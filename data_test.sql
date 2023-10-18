@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS biztime_test;
-
-CREATE DATABASE biztime_test \ c biztime_test;
+-- DROP DATABASE IF EXISTS biztime_test;
+-- CREATE DATABASE biztime_test;
+\c biztime_test;
 
 DROP TABLE IF EXISTS invoices;
 
@@ -21,3 +21,20 @@ CREATE TABLE invoices (
     paid_date date,
     CONSTRAINT invoices_amt_check CHECK ((amt > (0) :: double precision))
 );
+
+-- INSERT INTO
+--     companies
+-- VALUES
+--     ('ntndo', 'Nintendo', 'Bad Hardware, Great Game!'),
+--     (
+--         'sony',
+--         'Sony',
+--         'We have the best naming convention!'
+--     );
+-- INSERT INTO
+--     invoices (comp_code, amt, paid, paid_date)
+-- VALUES
+--     ('ntndo', 100, TRUE, '2018-10-01'),
+--     ('ntndo', 200, false, NULL),
+--     ('sony', 300, TRUE, '2018-10-01'),
+--     ('sony', 400, false, NULL);
